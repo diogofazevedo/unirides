@@ -1,18 +1,10 @@
-// ignore_for_file: file_names
 import 'package:flutter/material.dart';
+import 'package:unirides/controllers/historic_controller.dart';
+import 'package:unirides/pages/historic_page.dart';
 
-import 'package:unirides/user.dart';
-import 'package:unirides/historic.dart';
-
-User u = User(
-  name: 'Henrique',
-  email: 'henrique@gmail.com',
-  phone: '911 175 357',
-  institute: 'IPMAIA',
-);
-
-class Profile extends StatelessWidget {
-  const Profile({Key? key}) : super(key: key);
+// ignore: must_be_immutable, use_key_in_widget_constructors
+class ProfilePage extends StatelessWidget {
+  var controller = HistoricController();
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +14,7 @@ class Profile extends StatelessWidget {
         shadowColor: Colors.white,
         title: Center(
           child: Image.asset(
-            'assets/images/logotipo.png',
+            'assets/images/logo.png',
             fit: BoxFit.contain,
             height: 50,
           ),
@@ -42,8 +34,8 @@ class Profile extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: const BorderRadius.all(Radius.circular(60.0)),
                   border: Border.all(color: Colors.grey),
-                  image: const DecorationImage(
-                    image: ExactAssetImage('assets/images/henrique.jpg'),
+                  image: DecorationImage(
+                    image: ExactAssetImage(controller.henrique.profilePicture),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -52,7 +44,7 @@ class Profile extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Olá, ${u.name}",
+                    "Olá, ${controller.henrique.name}",
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
@@ -77,7 +69,7 @@ class Profile extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "E-mail: ${u.email}",
+                  "E-mail: ${controller.henrique.email}",
                   style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 20,
@@ -85,7 +77,7 @@ class Profile extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  "Telemóvel: ${u.phone}",
+                  "Telemóvel: ${controller.henrique.phone}",
                   style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 20,
@@ -93,7 +85,7 @@ class Profile extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  "Instituição: ${u.institute}",
+                  "Instituto: ${controller.henrique.higherInstitute}",
                   style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 20,
@@ -113,7 +105,7 @@ class Profile extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const Historic()),
+                    MaterialPageRoute(builder: (context) => HistoricPage()),
                   );
                 },
                 child: const Text(
@@ -200,7 +192,7 @@ class Profile extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const Profile()),
+                  MaterialPageRoute(builder: (context) => ProfilePage()),
                 );
               },
               icon: const Icon(Icons.person),

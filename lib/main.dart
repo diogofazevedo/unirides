@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:unirides/profile.dart';
+import 'package:unirides/pages/profile_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,6 +10,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(home: Profile());
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        appBarTheme:
+            const AppBarTheme(iconTheme: IconThemeData(color: Colors.black)),
+      ),
+      home: ProfilePage(),
+    );
   }
 }
